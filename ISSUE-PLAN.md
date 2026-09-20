@@ -38,10 +38,25 @@ value-string matching design, so the new bug issues belong next to them.
    no milestones. Therefore: encode the phase in the **title prefix** (`[0.0.18]`, `[0.1.0]`,
    `[chore]`, `[probe]`) and put a `Suggested labels:` line at the bottom of each body for a
    maintainer to apply. Milestones `0.0.18` and `0.1.0` are worth asking for in E1.
-4. **Ask before bulk-filing.** 41 issues appearing overnight on a repo with 24 lifetime issues reads
-   as a takeover attempt. File E1 first, wait for a maintainer reply, then file the rest in waves
-   (section 5). If upstream prefers fewer issues, E1's checklist alone is enough and the B/T issues
-   collapse into PR descriptions.
+4. **Establish standing in E1, then still file in waves.** 42 issues appearing overnight on a repo
+   with 24 lifetime issues reads as a hostile takeover from a stranger — but you are not a stranger
+   to octoDNS, and E1 now says so up front (octoDNS org and `octodns/review` member, 13 merged PRs
+   across seven octodns-org repos, octodns-gcore root-NS support), together with an explicit "this is
+   help with your repo, not a fork announcement" and an offer to collapse the whole thing into fewer
+   PRs. That reframes the volume as review capacity rather than pressure, which is exactly what it
+   is. It does not make the volume itself disappear: still file E1 first, wait for a maintainer
+   reply, then file the rest in waves (section 5). If upstream prefers fewer issues, E1's checklist
+   alone is enough and the B/T issues collapse into PR descriptions.
+
+   On verifiability: the octoDNS org membership is public as of 2026-09-20 and was confirmed
+   (`GET /orgs/octodns/public_members/istr` → 204; the org currently lists exactly one public member,
+   `istr`), so the affiliation in E1 can be checked from the profile badge and needs no further
+   evidence. Team membership (`octodns/review`) is never publicly visible on GitHub, so that half of
+   the sentence stays on trust — which is why E1 also names the public record behind it: 32 public
+   issues and PRs across `octodns`, `octodns-constellix`, `octodns-digitalocean`, `octodns-gcore`,
+   `octodns-ns1`, `octodns-ovh` and `octodns-rackspace`, 13 of them merged, with octodns-gcore#48/#49
+   linked inline. Keep that link in the body even though the badge is now live: it shows a provider
+   feature requested, implemented and merged, which is the specific thing being offered here.
 
 ### 1.2 Already filed (do not duplicate)
 
@@ -90,14 +105,32 @@ This issue is the tracking issue for that work. The full roadmap follows: what i
 was verified (section 2), the ClouDNS API and octoDNS contracts the rewrite codes against (3, 4), the
 target design (5), the phased plan (6), the live probes and the decisions we need from you (7).
 
-Work is done in <fork URL>, submitted here as small self-contained PRs in the order below. Nothing
-lands without tests. Decisions marked D1 to D6 in section 7.2 are yours; probes P1 to P12 need one
-throwaway zone on a paid plan and we are happy to run them if you cannot.
+Where this comes from: I run a handful of zones on ClouDNS through octoDNS, and I work on octoDNS
+providers generally — I'm a member of the octoDNS organisation and of its `octodns/review` team, and
+have contributed to octoDNS core and to the constellix, gcore, ns1, ovh, digitalocean and rackspace
+providers (13 merged PRs; most recently root-NS support in octodns-gcore, octodns/octodns-gcore#48
+and #49). That is also why the tooling PRs below follow the octodns-org conventions —
+`script/cibuild`, the shared `.ci-config.json` Python matrix, black/isort config in `pyproject.toml`,
+the `tests/config/unit.tests.yaml` fixture layout — rather than inventing new ones, and why the
+design in section 5 is modelled on octodns-cloudflare, the one octodns-org provider whose backend has
+the same per-record-id shape as ClouDNS.
 
-Two asks up front:
+This is offered as help with your repository, not as a fork announcement. The work is written and
+tested in <fork URL> and submitted here as small self-contained PRs in the order below; nothing lands
+without tests, and every PR is yours to take, amend or decline. If the number of issues and PRs is
+more than you want in your tracker, say so and I will collapse them into fewer, larger PRs, or hold
+the rewrite and send only the TTL fix. I am also happy to take review load on this repo if that would
+help.
+
+Decisions marked D1 to D6 in section 7.2 are yours; probes P1 to P12 need one throwaway zone on a
+paid plan and I am happy to run them if you would rather not.
+
+Three asks up front:
 - milestones `0.0.18` and `0.1.0`, so the two releases can be tracked;
 - a maintainer opinion on D5 (raise the floor to octoDNS 1.22 / Python 3.10 in 0.1.0) and D6 (ship
-  0.0.18 as a small TTL-only fix first, or go straight to 0.1.0) before we start phase 2.
+  0.0.18 as a small TTL-only fix first, or go straight to 0.1.0) before phase 2 starts;
+- a say on how you want the rest filed: one issue per finding as listed in the checklist, or just
+  this issue plus the PRs.
 
 The canonical copy of this roadmap lives at <fork ROADMAP.md URL> and is updated as probes land;
 this body is a snapshot.
