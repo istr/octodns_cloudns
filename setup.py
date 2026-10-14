@@ -49,7 +49,6 @@ setup(
     name='octodns-cloudns',
     packages=find_packages(),
     python_requires='>=3.10',
-    tests_require=tests_require,
-    url='https://github.com/octodns/octodns-cloudns',
+    url='https://github.com/ClouDNS/octodns_cloudns',
     version=version(),
 )

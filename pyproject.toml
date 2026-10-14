@@ -1,0 +1,20 @@
+# Tool configuration only; package metadata stays in setup.py.
+# Settings follow the octoDNS provider template (octodns/octodns-template).
+
+[tool.black]
+line-length = 80
+# Limited to the targets the pinned black (<24) knows.
+target-version = ["py310", "py311", "py312"]
+skip-string-normalization = true
+skip-magic-trailing-comma = true
+
+[tool.isort]
+profile = "black"
+known_first_party = "octodns_cloudns"
+known_octodns = "octodns"
+line_length = 80
+sections = "FUTURE,STDLIB,THIRDPARTY,OCTODNS,FIRSTPARTY,LOCALFOLDER"
+
+[tool.pytest.ini_options]
+# script/bootstrap does not install the package itself.
+pythonpath = "."

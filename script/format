@@ -2,9 +2,20 @@
 
 set -e
 
-SOURCES=$(find *.py octodns_* tests -name "*.py")
+cd "$(dirname "$0")/.."
 
-. env/bin/activate
+if [ -z "$VENV_NAME" ]; then
+    VENV_NAME="env"
+fi
+
+ACTIVATE="$VENV_NAME/bin/activate"
+if [ ! -f "$ACTIVATE" ]; then
+    echo "$ACTIVATE does not exist, run ./script/bootstrap" >&2
+    exit 1
+fi
+. "$ACTIVATE"
+
+SOURCES=$(find *.py octodns_* scripts tests -name "*.py")
 
 isort "$@" $SOURCES
 black "$@" $SOURCES
