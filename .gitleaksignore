@@ -1,0 +1,5 @@
+# Known findings in history, each with the reason it is accepted.
+
+# Sub-user password committed in PR #20, removed in #28; rotated by its owner
+# (#23). It stays in git history, so the full-history scan has to accept it.
+0a7245c42683c9d464cf9968da8018d6afd40363:tests/test_octodns_cloudns_provider.py:cloudns-password-assignment:422

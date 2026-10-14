@@ -9,6 +9,15 @@
   the cache on failure, and avoid mutating shared desired/existing records.
 - Require Python >=3.10 and octoDNS >=1.22.0 as agreed in #25. Add minimum-version
   and current-version CI checks, offline DS regression tests and YAML docs (#14).
+- Add development tooling without reformatting code: `pyproject.toml` with the
+  octoDNS black/isort settings, a pre-commit hook (secret scan, lint, tests),
+  gitleaks secret scanning in CI with rules for the credential pattern from #23,
+  `script/format` and `script/cibuild-setup-py` fixes, and the correct project
+  URL. Regenerate the pinned requirements on Python 3.10 (the 2023 pins no
+  longer install on Python 3.12 and later: cmarkgfm has no 3.12 wheel, cffi
+  1.16.0 does not build on 3.13) and let pytest import the package from a
+  bootstrapped environment. Fix the pyflakes findings and remove unused test
+  configuration files.
 - Mark this feature branch as 0.1.0.dev0; DS is not part of the 0.0.19 patch.
   Existing non-DS reconciliation limitations below remain until the #25 rewrite.
 

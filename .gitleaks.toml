@@ -1,0 +1,24 @@
+# gitleaks configuration: the default rules plus the ClouDNS credential
+# patterns they miss. A sub-user password was once committed both as a shell
+# assignment and as an os.environ.get() default (#23); neither was detected by
+# the default rules.
+
+title = "octodns-cloudns"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "cloudns-password-assignment"
+description = "ClouDNS API password assigned in shell or env-file syntax"
+regex = '''(?i)\bCLOUDNS_[A-Z0-9_]*PASSWORD\s*=\s*['"]?([^\s'"$]{8,})'''
+secretGroup = 1
+entropy = 3.0
+keywords = ["cloudns_"]
+
+[[rules]]
+id = "cloudns-password-default"
+description = "ClouDNS API password used as an environment variable default"
+regex = '''(?i)environ\.get\(\s*['"]CLOUDNS_[A-Z0-9_]*PASSWORD['"]\s*,\s*['"]([^'"]{4,})['"]'''
+secretGroup = 1
+keywords = ["cloudns_"]

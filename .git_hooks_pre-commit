@@ -1,0 +1,20 @@
+#!/bin/bash
+# Installed as .git/hooks/pre-commit by script/bootstrap.
+# The format check and the coverage gate join once the code base passes them
+# (see #25).
+
+set -e
+
+ROOT="$(git rev-parse --show-toplevel)"
+
+if command -v gitleaks >/dev/null; then
+    # "protect --staged" works on gitleaks 8.x before and after 8.19, which
+    # introduced "git --staged".
+    gitleaks protect --staged --redact --no-banner \
+        --config "$ROOT/.gitleaks.toml" --source "$ROOT"
+else
+    echo "gitleaks not found, skipping the secret scan (CI runs it)" >&2
+fi
+
+"$ROOT/script/lint"
+"$ROOT/script/test"
