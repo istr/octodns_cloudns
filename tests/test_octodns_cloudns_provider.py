@@ -1,7 +1,7 @@
 import os
 import unittest
 from uuid import uuid4
-from unittest.mock import Mock, call, patch, MagicMock
+from unittest.mock import Mock, call, patch
 from octodns.zone import Zone
 from octodns.record import Record, Update
 from octodns_cloudns import (
@@ -12,7 +12,6 @@ from octodns_cloudns import (
     ClouDNSClientUnauthorized,
     ClouDNSClientForbidden,
     ClouDNSClientNotFound,
-    ClouDNSClientUnknownDomainName
 )
 
 class TestClouDNSClient(unittest.TestCase):

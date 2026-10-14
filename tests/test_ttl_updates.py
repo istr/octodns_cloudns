@@ -476,8 +476,8 @@ def test_ttl_updates_preserve_verified_metadata(record_type, metadata):
         assert {k: v for k, v in row.items() if k != 'ttl'} == {
             k: v for k, v in before[record_id].items() if k != 'ttl'
         }
-    for call in provider._client.record_mod.call_args_list:
-        fields = call.args[4]
+    for mod_call in provider._client.record_mod.call_args_list:
+        fields = mod_call.args[4]
         assert not any(key in fields for key in ('notes', 'note', 'status', 'failover'))
 
 

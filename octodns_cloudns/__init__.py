@@ -898,13 +898,13 @@ class ClouDNSProvider(BaseProvider):
                             'update-based reconciliation')
             # Does the zone actually exist?
             try:
-                zone = self._client.zone(zone_name)
+                self._client.zone(zone_name)
             except ClouDNSClientException as e:
                 if 'Missing domain-name' not in str(e):
                     raise
 
                 geodns_only = self.isGeoDNS(str(e))
-                zone = self._client.zone_create(zone_name, 'geodns' if geodns_only else 'master')
+                self._client.zone_create(zone_name, 'geodns' if geodns_only else 'master')
                 self.log.info("_apply: zone has been successfully created")
 
             for change in changes:
